@@ -10,6 +10,10 @@ const app = express()
 app.use(bodyParser.json())
 app.use(cors())
 
+app.get('/hello', (req, res)=>{ 
+    res.send('Hello Word')
+})
+
 app.post('/token', async (req, res) => {
     try {
         const accessToken = await exchangeCodeForAccessToken(req.body.code)
@@ -28,6 +32,7 @@ app.post('/user', async (req, res) => {
         res.sendStatus(500)
     }
 })
+
 app.post('/repos', async (req, res) => { 
     try{
         const repos = await getRepos({
