@@ -11,7 +11,7 @@ export async function exchangeCodeForAccessToken(code) {
     const body = {
         code: code,
         grant_type: 'authorization_code',
-        redirect_uri: REDIRECT_URL,
+        redirect_uri: REDIRECT_URL ?? 'http://localhost:5173/',
         client_id: CLIENT_ID,
         client_secret: CLIENT_SECRET
     }

@@ -26,7 +26,7 @@ app.post('/token', async (req, res) => {
 
 app.post('/user/connected', async (req, res) => {
     console.log('connected')
-    console.log(req.body.accessToken)
+    console.log('body: ', req.body)
     try {
         const userData = await getConnectedUser(req.body.accessToken)
         console.log(await userData)
