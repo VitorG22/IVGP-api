@@ -16,7 +16,10 @@ app.get('/hello', (req, res)=>{
 
 app.post('/token', async (req, res) => {
     try {
-        const accessToken = await exchangeCodeForAccessToken(req.body.code)
+        const accessToken = await exchangeCodeForAccessToken({
+            code: req.body.code,
+            REDIRECT_URL: req.body.REDIRECT_URL 
+        })
         console.log(accessToken)
         res.send(accessToken)
     } catch (error) {

@@ -6,12 +6,12 @@ dotenv.config()
 const GITHUB_ACCESS_URL = 'http://api.github.com'
 
 // recebe um code e retorna o token de autorização do usuario 
-export async function exchangeCodeForAccessToken(code) {
-    const { CLIENT_ID, CLIENT_SECRET, REDIRECT_URL } = process.env
+export async function exchangeCodeForAccessToken({code, REDIRECT_URL}) {
+    const { CLIENT_ID, CLIENT_SECRET} = process.env
     const body = {
         code: code,
         grant_type: 'authorization_code',
-        redirect_uri: REDIRECT_URL ?? 'http://localhost:5173/',
+        redirect_uri: REDIRECT_URL,
         client_id: CLIENT_ID,
         client_secret: CLIENT_SECRET
     }
