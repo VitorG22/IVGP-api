@@ -27,8 +27,16 @@ export async function exchangeCodeForAccessToken(code) {
 
 
 // recebe um token e retorna o Usuario conectado
-export async function getUSer(accessToken) {
+export async function getConnectedUser(accessToken) {
     const response = await axios.get(`${GITHUB_ACCESS_URL}/user`, {
+        headers: {
+            Authorization: `Bearer ${accessToken}`
+        }
+    })
+    return await response.data
+}
+export async function getUser({accessToken, userName}) {
+    const response = await axios.get(`${GITHUB_ACCESS_URL}/user/${userName}`, {
         headers: {
             Authorization: `Bearer ${accessToken}`
         }
