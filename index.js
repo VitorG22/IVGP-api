@@ -2,7 +2,7 @@ import express from 'express'
 import bodyParser from 'body-parser'
 import cors from 'cors'
 import dotenv from 'dotenv'
-import { exchangeCodeForAccessToken, getRepos, getRepoBranches, getRepoCommit, getAllCommits, getUser, getConnectedUser } from './callsToApi.js'
+import { exchangeCodeForAccessToken, getRepos, getRepoBranches, getRepoCommit, getAllCommits, getUser, getConnectedUser, getRepo } from './callsToApi.js'
 dotenv.config()
 
 
@@ -57,6 +57,19 @@ app.post('/repos', async (req, res) => {
         const repos = await getRepos({
             userName: req.body.userName, 
             accessToken: req.body.accessToken
+        })
+        res.send(repos)
+    }catch(error){
+        res.sendStatus(500)
+    }
+})
+
+app.post('/repo', async (req, res) => { 
+    try{
+        const repos = await getRepo({
+            userName: req.body.userName, 
+            accessToken: req.body.accessToken,
+            repoName: req.body.repoName
         })
         res.send(repos)
     }catch(error){
